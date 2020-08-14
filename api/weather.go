@@ -45,9 +45,9 @@ func (a *API) getWeather(c echo.Context) error {
 		// and measure to the closest point available in our cache
 		return a.fallbackToClosest(c, longitude, latitude)
 
-	} else {
-		return c.JSON(200, value)
 	}
+
+	return c.JSON(200, value)
 }
 
 func (a *API) fallbackToClosest(c echo.Context, longitude, latitude float64) error {
