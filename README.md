@@ -84,12 +84,13 @@ RSH-Wetter bietet Informationen zu 12 Standorten an, zusätzlich besteht die mö
 ## Credits
 
 ### Third Parties
-* github.com/spf13/cobra
-* github.com/kelseyhightower/envconfig
-* github.com/joho/godotenv
-* github.com/sirupsen/logrus
-* github.com/jinzhu/gorm (why not V2?: V2 is still under developement, current state: public testing)
-* github.com/labstack/echo/v4
+* github.com/spf13/cobra handles `cmd`
+* github.com/kelseyhightower/envconfig loads config from `env`
+* github.com/joho/godotenv allows to use `.env`
+* github.com/sirupsen/logrus nicer logging
+* github.com/jinzhu/gorm manages migrations & ORM
+* github.com/labstack/echo/v4 serves the http handler
+* github.com/dgraph-io/ristretto used for caching
 
 ### Testing Third Parties
 * github.com/tj/assert
