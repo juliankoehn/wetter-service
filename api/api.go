@@ -123,7 +123,9 @@ func (a *API) Start() {
 func (a *API) Stop(ctx context.Context) error {
 	a.cache.Close()
 	a.sched.Stop()
-	a.db.Close()
+	if err := a.db.Close(); err != nil {
+		logrus.Fatal(err)
+	}
 	if err := a.e.Shutdown(ctx); err != nil {
 		return err
 	}

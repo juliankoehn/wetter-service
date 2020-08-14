@@ -3,16 +3,20 @@
 Wetter-Dienst basierend auf Analyse von anforderungen der Privater Radio-Sender
 https://meteor.loverad.io/v1?lat=53.86893&lon=10.68729
 
-Beim Debuggen der API fiel mir auf das diese zwar alle lat/longs akzeptiert, wie hier einen Ort in Libyen, allerdings dafür einen Fallback verwendet. In dem Fall wird weiterhin das Wetter für "Oberstdorf" angezeigt.
+Beim Debuggen der API fiel mir auf das diese zwar alle lat/longs akzeptiert, wie hier einen Ort in Libyen, allerdings dafür einen Fallback verwendet. In dem Fall wird das Wetter für "Oberstdorf" angezeigt.
 
-Die ResponseTimes sind btw verdammt krass (teilweise 1500-2400ms).
+Eine Alternative verwendet diese API, neben dem Fallback Config Flag der erlaubt direkt die OWM API zu Pollen, kann ein weiterer Fallback verwendet werden der die Distanz zum Ziel (haversine) berechnet und dem User die nächstmögliche Geo-Location ausgibt. Das macht dann Sinn wenn der Service für alle Standorte läuft, so kann Deutschlandweit das Wetter über eine API ausgegeben werden.
+
+Im vergleich zur derzeitigen API dürfte ebenfalls ein Verbesserung der ResponseTimes (Latency) zu merken sein. Beim Benchen der bestehenden API kam ich teilweise auf 1.3-2.5 Sekunden. Die neue API sollte real-world Latencies liefern von 2-25ms / request.
 
 Ebenfalls fiel mir auf das ich die API ohne Rate-Limit / CORS beschränkung spammen kann.
 https://meteor.loverad.io/v1?lat=28.879878&lon=11.561894
 
+Eine CORS implementierung wäre hier innerhalb von wenigen Minuten erledigt. Sollte hier bedarf zum nachbessern sein.
+
 
 Quelle für Wetterdaten:
-Entsprechend: https://openweathermap.org/api/hourly-forecast - die API ermöglicht eine abfrage "By city ID" und stellt entsprechend eine file [`city.list.json`](http://bulk.openweathermap.org/sample/) bereit.
+Die Wetterdaten dieser API stammen von https://openweathermap.org/api/one-call-api und kommen mit etwas mehr "infos". Die derzeitge API scheint 2 Requests pro Location zu verwenden um "Current" sowie "Forecast" auszugeben. Über die One-Call-API kann Current sowie Forecast in einem Zug requested werden (5 Tage, sowie Stündliche Updates)
 
 
 Die City.list aktualisiert sich alle paar Tage bis hin zu alle paar Monate, entsprechend macht es sinn einen Bootup in der App zu verwenden und alle 24 Stunden nach einem Update zu prüfen, die JSON Daten auszulesen und in eine Datenbank zu Speichern. Da hier kein frequentierter Zugriff drauf sein muss genügt dafür bereits eine SQLite.
@@ -22,7 +26,6 @@ Ein API Call sieht dann entsprechend so aus: `pro.openweathermap.org/data/2.5/fo
 oder alternativ: `pro.openweathermap.org/data/2.5/forecast/hourly?lat={lat}&lon={lon}&appid={your api key}` für lat/long.
 
 Bei Regiocast werden diese Daten in einer Redis-DB gespeichert, um offenbar schnelle Zugriffe zu gewähren (0-latency). Wir können diese Anforderung in dieser Go-Application reduzieren und weichen auf einen Mem-Cache aus. Dies reduziert a) die Laufzeit Kosten der Applikation und b) wir verkleinern den Service-Layer. Ebenfalls wird ein Deployment deutlich leichter.
-
 
 ### Warum nicht `github.com/briandowns/openweathermap`
 

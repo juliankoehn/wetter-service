@@ -38,7 +38,7 @@ func (a *API) getWeather(c echo.Context) error {
 	if !found {
 		// lets try to get the closest cached item
 		if a.config.OpenWeather.Fallback {
-			a.fallbackCall(c, longitude, latitude)
+			return a.fallbackCall(c, longitude, latitude)
 		}
 		// if the default fallback is not allowed
 		// we have to use our distance api
