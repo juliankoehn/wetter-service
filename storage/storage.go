@@ -3,13 +3,13 @@ package storage
 import (
 	"net/url"
 
-	"github.com/delivc/team/storage/namespace"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mssql"    // default import
 	_ "github.com/jinzhu/gorm/dialects/mysql"    // default import
 	_ "github.com/jinzhu/gorm/dialects/postgres" // default import
 	_ "github.com/jinzhu/gorm/dialects/sqlite"   // default import
 	"github.com/juliankoehn/wetter-service/config"
+	"github.com/juliankoehn/wetter-service/storage/namespace"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )

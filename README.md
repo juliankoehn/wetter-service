@@ -41,19 +41,7 @@ Mögliche alternativen:
 
 RSH-Wetter bietet Informationen zu 12 Standorten an, zusätzlich besteht die möglichkeit "Mein Standort" zu verwenden. (siehe /rsh.de/Screen Shot 2020-08-14 at 12.45.53.png - uBlock disabled)
 
-# Third Parties
-* github.com/spf13/cobra
-* github.com/kelseyhightower/envconfig
-* github.com/joho/godotenv
-* github.com/sirupsen/logrus
-* github.com/jinzhu/gorm (why not V2?: V2 is still under developement, current state: public testing)
-* github.com/labstack/echo/v4
 
-## Testing Third Parties
-* github.com/tj/assert
-* github.com/stretchr/testify
-
-Missing? see go.mod
 
 
 ## CLI Commands
@@ -92,3 +80,19 @@ Missing? see go.mod
 | `CACHE_MAX_COSTS` | int64 | (Optional) MaxCost is how eviction decisions are made. `default: 1 << 30` |
 | `CACHE_BUFFER_ITEMS` | int64 | (Optional) BufferItems is the size of the Get buffers. `default: 64` |
 | `CACHE_METRICS` | bool | (Optional) Metrics is true when you want real-time logging of a variety of stats. `default: 64` |
+
+## Credits
+
+### Third Parties
+* github.com/spf13/cobra
+* github.com/kelseyhightower/envconfig
+* github.com/joho/godotenv
+* github.com/sirupsen/logrus
+* github.com/jinzhu/gorm (why not V2?: V2 is still under developement, current state: public testing)
+* github.com/labstack/echo/v4
+
+### Testing Third Parties
+* github.com/tj/assert
+* github.com/stretchr/testify
+
+Missing? see go.mod
