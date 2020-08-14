@@ -137,7 +137,7 @@ func FindEnabledCityByID(tx *gorm.DB, id string) (*City, error) {
 
 // UpdateOrCreateCities updates or creates the given cities in our database
 func UpdateOrCreateCities(tx *gorm.DB, cities []*City) error {
-	for _, city := range cities {
+	for index, city := range cities {
 		var c City
 		// we have to iterate over each city
 		// check if the entry already exists
@@ -156,7 +156,7 @@ func UpdateOrCreateCities(tx *gorm.DB, cities []*City) error {
 		} else {
 			// we have no error, so we found a city and we where able to bind it to c
 			// let's try to update our city
-			if err := tx.Model(&city).
+			if err := tx.Model(cities[index]).
 				Where("id = ?", city.ID).
 				Update("name", city.Name).
 				Update("lat", city.Coords.Latitude).
