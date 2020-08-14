@@ -72,3 +72,23 @@ Missing? see go.mod
 |---|---|---|
 | `/v1?` | `lat={LATITUDE}&lon={LONGITUDE}` |  Gets weather data by lat long |
 | `/v1/metrics` | | Returns metrics from our cache |
+
+## Environment Variables
+
+| Variable | Type | Description  |
+|---|---|---|
+| `LOG_LEVEL` | string |  Updates Cities in our Storage Engine |
+| `LOG_FILE` | string | (Optional) File to write log |
+| `LOG_DISABLE_COLORS` | bool | Disabled Colors `default: true` |
+| `LOG_QUOTE_EMPTY_FIELDS` | bool | Quote Empty Fields |
+| `DATABASE_DRIVER` | string | Values: `sqlite3` `postgres` `mysql`  |
+| `DATABASE_URL` | string | Connection URI `postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]`  |
+| `DATABASE_NAMESPACE` | string | (Optional) Namespace database Tables  |
+| `OPENWEATHER_API_KEY` | string | (Required) API Key for Openweather API  |
+| `OPENWEATHER_CITYLIST_ENDPOINT` | string | (Optional) Alternative endpoint for `city.list.json.gz`  |
+| `WEB_USE_TLS` | bool | (Optional) Uses TLS (Let's Encrypt) `default: false` |
+| `WEB_LISTEN_ADDR` | string | (Optional) Define Listen Address `:8080` |
+| `CACHE_NUM_COUNTERS` | int64 | (Optional) NumCounters is the number of 4-bit access counters to keep for admission and eviction. `default: 1e7` |
+| `CACHE_MAX_COSTS` | int64 | (Optional) MaxCost is how eviction decisions are made. `default: 1 << 30` |
+| `CACHE_BUFFER_ITEMS` | int64 | (Optional) BufferItems is the size of the Get buffers. `default: 64` |
+| `CACHE_METRICS` | bool | (Optional) Metrics is true when you want real-time logging of a variety of stats. `default: 64` |
