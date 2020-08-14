@@ -24,6 +24,7 @@ func TestGlobal(t *testing.T) {
 	os.Setenv("LOG_QUOTE_EMPTY_FIELDS", "true")
 	os.Setenv("DATABASE_DRIVER", "sqlite3")
 	os.Setenv("DATABASE_URL", "database.db")
+	os.Setenv("OPENWEATHER_API_KEY", "testKey")
 
 	conf, err := LoadConfig("")
 	require.NoError(t, err)
