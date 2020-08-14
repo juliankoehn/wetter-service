@@ -44,7 +44,7 @@ func (a *API) runner() {
 		// will get overriden by cacheKey if we have new data
 		if ok := a.cacheByCoords(res, city.Coords.Longitude, city.Coords.Latitude); !ok {
 			errors++
-			logrus.Error("Error caching item %s", city.Name)
+			logrus.Errorf("Error caching item %s", city.Name)
 		}
 		//if ok := a.cache.SetWithTTL(key, res, 1, 24*time.Hour); !ok {
 		//	errors++
