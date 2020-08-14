@@ -1,4 +1,5 @@
 ![Run Gosec](https://github.com/juliankoehn/wetter-service/workflows/Run%20Gosec/badge.svg)
+![Test](https://github.com/juliankoehn/wetter-service/workflows/Test/badge.svg)
 
 # Wetter Dienst regiocast
 
