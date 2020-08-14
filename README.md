@@ -1,3 +1,5 @@
+![Run Gosec](https://github.com/juliankoehn/wetter-service/workflows/Run%20Gosec/badge.svg)
+
 # Wetter Dienst regiocast
 
 Wetter-Dienst basierend auf Analyse von anforderungen der Privater Radio-Sender
